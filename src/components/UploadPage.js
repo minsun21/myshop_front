@@ -12,7 +12,7 @@ function UploadPage(props) {
     const [Images, setImages] = useState([])
 
     useEffect(() => {
-        axios.get('/product/upload/continents').then(response => {
+        axios.get('/product/continents').then(response => {
             setContinents(response.data)
         })
     }, [])
@@ -44,7 +44,7 @@ function UploadPage(props) {
             writer: 'admin@admin.com',
             desc: Desc,
             price: Price,
-            image: Images,
+            images: Images,
             continent: Continent
         }
         axios.post('/product/upload', body).then(response => {

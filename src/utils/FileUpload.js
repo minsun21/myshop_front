@@ -20,11 +20,12 @@ function FileUpload({ refreshFunction }) {
             }
         })
     }
+
     const deleteHandler = (image) => {
         const currentIndex = Images.indexOf(image);
-
         let newImages = [...Images]
         newImages.splice(currentIndex, 1)
+        setImages(newImages)
         refreshFunction(newImages)
     }
 
@@ -38,7 +39,7 @@ function FileUpload({ refreshFunction }) {
                     </div>
                 )}
             </Dropzone>
-            <div>
+            <div style={{ display: 'flex', width: '350px', height: '240px', overflowX: 'scroll' }}>
                 {Images.map((image, index) => (
                     <div onClick={() => deleteHandler(image)} key={index}><img src={`http://localhost:8080/${image}`}></img></div>
                 ))}

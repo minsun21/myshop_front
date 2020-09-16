@@ -1,9 +1,15 @@
 import React from 'react'
-
-function ImageSlider() {
+import { Carousel } from 'antd';
+function ImageSlider({ images }) {
     return (
         <div>
-
+            <Carousel autoplay>
+                {images.map((image, index) => (
+                    <div key={index}>
+                        <img style={{ width: '100%', maxHeight: '150px' }} src={`http://localhost:8080/${image}`} />
+                    </div>
+                ))}
+            </Carousel>
         </div>
     )
 }
