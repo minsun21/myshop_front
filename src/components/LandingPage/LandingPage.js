@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import ImageSlider from '../utils/ImageSlider'
-import { Col, Card, Row, Spin } from 'antd';
+import ImageSlider from '../../utils/ImageSlider'
+import { Col, Card, Row } from 'antd';
 import { RocketOutlined } from '@ant-design/icons';
+import CheckBox from './Section/CheckBox';
+import { continents } from './Section/Datas'
+
 const { Meta } = Card;
 
 function LandingPage() {
-    df
     const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0)
     const [Limit, setLimit] = useState(2)
     const [PostSize, setPostSize] = useState(true)
+    const [Filters, setFilters] = useState({
+        continents: [],
+        price: []
+    })
 
     useEffect(() => {
         let body = {
@@ -45,9 +51,8 @@ function LandingPage() {
         })
     }
     const renderCards = Products.map((product, index) => {
-        return <Col lg={6} md={8} xs={24}>
+        return <Col key={index} lg={6} md={8} xs={24}>
             <Card
-                key={index}
                 cover={<ImageSlider images={product.imagePathList} />}
             >
                 <Meta title={product.title}
@@ -56,11 +61,33 @@ function LandingPage() {
             </Card>
         </Col>
     })
+    const showFilteredResult = (filters) => {
+        let body = {
+            skip: 0,
+            limit: Limit,
+            filters: filters
+        }
+        getProducts(body)
+        setSkip(0)
+    }
+
+    const handleFilters = (filters, category) => {
+        const newFilters = { ...Filters }
+        newFilters[category] = filters
+
+        showFilteredResult()
+    }
+
     return (
         <div>
             <h2>Let's Travel Anywhere<RocketOutlined /></h2>
 
             {/* Filter */}
+            {/* CheckBox */}
+            <CheckBox list={continents} handleFilters={filter => handleFilters(Filters, "continents")} />
+            {/* RaidoBox */}
+
+
             {/* Search */}
             {/* */}
             {/* Cards */}

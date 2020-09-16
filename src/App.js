@@ -6,7 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 import UploadPage from './components/UploadPage'
-import LandingPage from './components/LandingPage'
+import LandingPage from './components/LandingPage/LandingPage'
 
 function App() {
   return (
