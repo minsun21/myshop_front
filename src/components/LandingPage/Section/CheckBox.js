@@ -3,7 +3,7 @@ import { Collapse, Checkbox } from 'antd';
 
 const { Panel } = Collapse;
 
-function CheckBox({ list }) {
+function CheckBox({ list, handleFilters }) {
     const [Checked, setChecked] = useState([])
 
     const handleToggle = (value) => {
@@ -16,6 +16,7 @@ function CheckBox({ list }) {
             newChecked.splice(currentIndex, 1)
         }
         setChecked(newChecked)
+        handleFilters(newChecked)
     }
 
     const renderCheckBoxLists = () => list && list.map((value, index) => (
@@ -30,7 +31,7 @@ function CheckBox({ list }) {
     return (
         <div>
             <Collapse defaultActiveKey={['1']} >
-                <Panel header="This is panel header 1" key="1">
+                <Panel header="CheckBox" key="1">
                     {renderCheckBoxLists()}
                 </Panel>
 
