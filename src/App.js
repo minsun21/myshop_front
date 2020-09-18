@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import UploadPage from './components/UploadPage'
 import LandingPage from './components/LandingPage/LandingPage'
+import DetailProductPage from './components/DetailProductPage/DetailProductPage'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/product" component={UploadPage} />
+        <Route exact path="/product/:productId" component={DetailProductPage} />
       </Switch>
     </Router>
   );

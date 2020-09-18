@@ -56,7 +56,7 @@ function LandingPage() {
     const renderCards = Products.map((product, index) => {
         return <Col key={index} lg={6} md={8} xs={24}>
             <Card
-                cover={<ImageSlider images={product.imagePathList} />}
+                cover={<a href={`/product/${product.id}`}><ImageSlider images={product.imagePathList} /></a>}
             >
                 <Meta title={product.title}
                     description={`$${product.price}`}
@@ -114,8 +114,6 @@ function LandingPage() {
     return (
         <div>
             <h2>Let's Travel Anywhere<RocketOutlined /></h2>
-
-            {/* Filter */}
             <Row gutter={[16, 16]}>
                 <Col lg={12} xs={24}>
                     <CheckBox list={continents} handleFilters={filters => handleFilters(filters, "continents")} />
